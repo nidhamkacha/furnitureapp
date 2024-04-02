@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:furnitureapp/res/common/Global_Textfield.dart';
 import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
+import 'package:furnitureapp/res/common/global_textfield.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
-import 'package:furnitureapp/view/auth/signup_screen.dart';
-import 'package:furnitureapp/view/home/home_screen.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class SignupScreen extends StatefulWidget {
+  const SignupScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,12 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 24.h,
                 ),
                 GlobalText(
-                  text: "Hello!",
-                  fontSize: 32.sp,
-                  fontWeight: FontWeight.w600,
-                ),
-                GlobalText(
-                  text: "WELCOME BACK",
+                  text: "WELCOME",
                   fontSize: 32.sp,
                   fontWeight: FontWeight.w600,
                 ),
@@ -53,7 +45,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 Center(
                   child: Container(
-                    height: 327.h,
+                    height: 520.h,
                     width: double.infinity,
                     decoration: BoxDecoration(
                       color: Colors.white,
@@ -71,10 +63,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 40.h,
                         ),
-                        // GlobalTextField(
-                        //   text: "Email",
-                        //   icon: Icon(Icons.expand_more),
-                        // ),
+                        GlobalTextfield(
+                          text: "Name",
+                          icon: Icon(Icons.expand_more),
+                        ),
+                        SizedBox(
+                          height: 16.h,
+                        ),
                         GlobalTextfield(
                           text: "Email",
                           icon: Icon(Icons.expand_more),
@@ -82,18 +77,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 16.h,
                         ),
-                        // GlobalTextField(
-                        //   text: "Password",
-                        //   icon: Icon(Icons.remove_red_eye_outlined),
-                        // ),
                         GlobalTextfield(
                           text: "Password",
                           icon: Icon(Icons.remove_red_eye_outlined),
                         ),
-                        GlobalText(
-                          text: "Forgot Password",
-                          fontSize: 16.sp,
-                          fontWeight: FontWeight.w400,
+                        SizedBox(
+                          height: 16.h,
+                        ),
+                        GlobalTextfield(
+                          text: "Confirm Password",
+                          icon: Icon(Icons.remove_red_eye_outlined),
                         ),
                         SizedBox(
                           height: 16.h,
@@ -101,12 +94,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: GlobalButton(
-                            text: "Log in",
-                            onPressed: () => Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomeScreen(),
-                                )),
+                            text: "Sign Up",
+                            onPressed: () => Navigator.pop(context),
                           ),
                         ),
                         SizedBox(
@@ -114,14 +103,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignupScreen(),
-                                ));
+                            Navigator.pop(context);
                           },
                           child: GlobalText(
-                            text: "Sign up",
+                            text: "Sign in",
                             fontSize: 16.sp,
                             fontWeight: FontWeight.w400,
                           ),
