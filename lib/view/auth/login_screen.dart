@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furnitureapp/res/common/Global_Textfield.dart';
 import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/auth/signup_screen.dart';
-import 'package:furnitureapp/view/home/home_screen.dart';
+import 'package:furnitureapp/view/tabbarscreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -105,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             onPressed: () => Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (context) => HomeScreen(),
+                                  builder: (context) => TabbarScreen(),
                                 )),
                           ),
                         ),

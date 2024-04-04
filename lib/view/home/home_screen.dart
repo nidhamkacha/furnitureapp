@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
@@ -10,100 +12,65 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
-  late final TabController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TabController(length: 5, vsync: this);
-    _controller.addListener(_handleTabSelection);
-  }
-
-  void _handleTabSelection() {
-    setState(() {});
-  }
-
+class _HomeScreenState extends State<HomeScreen> {
+  List<String> imagepath = [
+    'assets/images/lamp.png',
+    'assets/images/minimalstand.png',
+    'assets/images/coffechair.png',
+    'assets/images/simpledesk.png'
+  ];
+  List<String> productname = [
+    'Black Simple Lamp',
+    'Minimal Stand',
+    'Coffee Chair',
+    'Simple Desk'
+  ];
+  List<String> price = [
+    '\$12.00',
+    '\$25.00',
+    '\$12.00',
+    '\$12.00',
+  ];
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 5,
-      child: Scaffold(
-        backgroundColor: AppColor.whitecolor,
-        body: Column(
-          children: [
-            SizedBox(
-              height: 52.h,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 28.0),
-              child: Container(
-                height: 48.h,
-                width: 327.w,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Scaffold(
+      body: Column(
+        children: [
+          GridView.builder(
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+            itemBuilder: (context, index) {
+              return Container(
+                child: Column(
                   children: [
-                    IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.search,
-                          size: 35,
-                          color: AppColor.lightblackcolor,
-                        )),
-                    Column(
+                    Stack(
                       children: [
-                        GlobalText(
-                          text: "MAKE HOME",
-                          fontWeight: FontWeight.w400,
-                          fontSize: 14.sp,
-                          color: AppColor.lightblackcolor,
+                        // Image
+                        Image.asset(
+                          '',
+                          width: 200,
+                          height: 200,
+                          fit: BoxFit.cover,
                         ),
-                        GlobalText(
-                          text: "BEAUTIFUL",
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.sp,
-                          color: AppColor.lightblackcolor,
-                        )
+                        // Cart Icon
+                        Positioned(
+                          top: 10, // Adjust position as needed
+                          right: 10, // Adjust position as needed
+                          child: IconButton(
+                            icon: Icon(Icons.shopping_cart),
+                            onPressed: () {
+                              // Add your onPressed logic here
+                            },
+                          ),
+                        ),
                       ],
-                    ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(
-                        Icons.shopping_cart_outlined,
-                        size: 35,
-                        color: AppColor.lightblackcolor,
-                      ),
                     ),
                   ],
                 ),
-              ),
-            ),
-            Container(
-              height: 69.h,
-              child: TabBar(controller: _controller, tabs: [
-                Container(
-                  width: 53,
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 42.h,
-                        width: 42.w,
-                        child: Image.asset(
-                          'assets/images/popular.png',
-                          scale: 3,
-                          color: _controller.index == 0
-                              ? AppColor.blackcolor
-                              : AppColor.lightblackcolor,
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ]),
-            )
-          ],
-        ),
+              );
+            },
+          )
+        ],
       ),
     );
   }
