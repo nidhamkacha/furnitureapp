@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  
   List<String> imagepath = [
     'assets/images/lamp.png',
     'assets/images/minimalstand.png',
