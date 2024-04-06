@@ -1,6 +1,7 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
@@ -41,55 +42,62 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [
           GridView(
+            shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 20,
-                mainAxisExtent: 256),
+                mainAxisExtent: 256.h),
             children: [
               ...items.map(
-                (e) => Container(
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 200.h,
-                        width: 157.w,
-                        child: Stack(
-                          children: [
-                            // Image
-                            Image.asset(
-                              e['imagepath'].toString(),
-                              width: 200,
-                              height: 200,
-                              fit: BoxFit.cover,
-                            ),
-                            // Cart Icon
-                            Positioned(
-                              top: 10, // Adjust position as needed
-                              right: 10, // Adjust position as needed
-                              child: IconButton(
-                                icon: Icon(Icons.shopping_cart),
-                                onPressed: () {
-                                  // Add your onPressed logic here
-                                },
+                (e) => Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  child: Container(
+                    decoration:
+                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    child: Column(
+                      children: [
+                        Container(
+                          height: 200.h,
+                          decoration: BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                    e['imagepath'].toString(),
+                                  ),
+                                  fit: BoxFit.cover),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.bottomRight,
+                                child: Padding(
+                                  padding: const EdgeInsets.only(
+                                      left: 8.0, bottom: 8),
+                                  child: IconButton(
+                                    icon: Icon(Icons.local_mall),
+                                    onPressed: () {
+                                      // Add your onPressed logic here
+                                    },
+                                  ),
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                      GlobalText(
-                        text: e['productname'],
-                        color: AppColor.lightblackcolor,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14.sp,
-                      ),
-                      GlobalText(
-                        text: e['price'],
-                        color: AppColor.blackcolor,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 14.sp,
-                      )
-                    ],
+                        GlobalText(
+                          text: e['productname'],
+                          color: AppColor.lightblackcolor,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14.sp,
+                        ),
+                        GlobalText(
+                          text: e['price'],
+                          color: AppColor.blackcolor,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 14.sp,
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
