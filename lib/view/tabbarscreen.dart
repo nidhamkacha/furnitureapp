@@ -89,10 +89,7 @@ class _TabbarScreenState extends State<TabbarScreen>
                 indicatorColor: Colors.transparent,
                 controller: _controller,
                 unselectedLabelColor: Colors.red,
-                // indicator: BoxDecoration(
-                //   borderRadius: BorderRadius.circular(10), // Adjust as needed
-                //   // color: Colors.green, // Indicator color
-                // ),
+                
                 tabs: [
                   Container(
                     height: 69.h,

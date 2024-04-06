@@ -13,64 +13,88 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  
-  List<String> imagepath = [
-    'assets/images/lamp.png',
-    'assets/images/minimalstand.png',
-    'assets/images/coffechair.png',
-    'assets/images/simpledesk.png'
-  ];
-  List<String> productname = [
-    'Black Simple Lamp',
-    'Minimal Stand',
-    'Coffee Chair',
-    'Simple Desk'
-  ];
-  List<String> price = [
-    '\$12.00',
-    '\$25.00',
-    '\$12.00',
-    '\$12.00',
+  var items = [
+    {
+      'productname': 'Black Simple Lamp',
+      'price': '\$12.00',
+      'imagepath': 'assets/images/lamp.png'
+    },
+    {
+      'productname': 'Minimal Stand',
+      'price': '\$12.00',
+      'imagepath': 'assets/images/minimalstand.png'
+    },
+    {
+      'productname': 'Coffee Chair',
+      'price': '\$25.00',
+      'imagepath': 'assets/images/coffechair.png'
+    },
+    {
+      'productname': 'Simple Desk',
+      'price': '\$12.00',
+      'imagepath': 'assets/images/simpledesk.png'
+    },
   ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         children: [
-          GridView.builder(
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemBuilder: (context, index) {
-              return Container(
-                child: Column(
-                  children: [
-                    Stack(
-                      children: [
-                        // Image
-                        Image.asset(
-                          '',
-                          width: 200,
-                          height: 200,
-                          fit: BoxFit.cover,
+          GridView(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 20,
+                mainAxisExtent: 256),
+            children: [
+              ...items.map(
+                (e) => Container(
+                  child: Column(
+                    children: [
+                      Container(
+                        height: 200.h,
+                        width: 157.w,
+                        child: Stack(
+                          children: [
+                            // Image
+                            Image.asset(
+                              e['imagepath'].toString(),
+                              width: 200,
+                              height: 200,
+                              fit: BoxFit.cover,
+                            ),
+                            // Cart Icon
+                            Positioned(
+                              top: 10, // Adjust position as needed
+                              right: 10, // Adjust position as needed
+                              child: IconButton(
+                                icon: Icon(Icons.shopping_cart),
+                                onPressed: () {
+                                  // Add your onPressed logic here
+                                },
+                              ),
+                            ),
+                          ],
                         ),
-                        // Cart Icon
-                        Positioned(
-                          top: 10, // Adjust position as needed
-                          right: 10, // Adjust position as needed
-                          child: IconButton(
-                            icon: Icon(Icons.shopping_cart),
-                            onPressed: () {
-                              // Add your onPressed logic here
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                      ),
+                      GlobalText(
+                        text: e['productname'],
+                        color: AppColor.lightblackcolor,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 14.sp,
+                      ),
+                      GlobalText(
+                        text: e['price'],
+                        color: AppColor.blackcolor,
+                        fontWeight: FontWeight.w600,
+                        fontSize: 14.sp,
+                      )
+                    ],
+                  ),
                 ),
-              );
-            },
-          )
+              ),
+            ],
+          ),
         ],
       ),
     );
