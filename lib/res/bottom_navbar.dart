@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/tabbarscreen.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -31,15 +32,35 @@ class _BottomNavbarState extends State<BottomNavbar> {
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
+            icon: Icon(
+              Icons.home_outlined,
+              color: AppColor.blackcolor,
+            ),
+            label: '',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.bookmark_border_outlined)),
           BottomNavigationBarItem(
-              icon: Icon(Icons.notifications_none_outlined)),
-          BottomNavigationBarItem(icon: Icon(Icons.person_outline_outlined)),
+              icon: Icon(
+                Icons.bookmark_border_outlined,
+                color: AppColor.blackcolor,
+              ),
+              label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.notifications_none_outlined,
+                color: AppColor.blackcolor,
+              ),
+              label: ''),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.person_outline_outlined,
+                color: AppColor.blackcolor,
+              ),
+              label: ''),
         ],
         showSelectedLabels: false, // Disable selected item label
         showUnselectedLabels: false,
+        selectedItemColor: AppColor.blackcolor,
+        selectedIconTheme: IconThemeData(color: Colors.black),
         onTap: _onItemTapped,
       ),
     );

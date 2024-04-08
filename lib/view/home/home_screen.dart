@@ -1,10 +1,10 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
+import 'package:furnitureapp/view/product/productdescription.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -41,31 +41,45 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: Column(
         children: [
-          GridView(
+          GridView.builder(
+            padding: EdgeInsets.zero,
             shrinkWrap: true,
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 20,
-                mainAxisExtent: 256.h),
-            children: [
-              ...items.map(
-                (e) => Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              crossAxisCount: 2,
+              crossAxisSpacing: 10,
+              mainAxisSpacing: 20,
+              mainAxisExtent: 256.h,
+            ),
+            itemCount: items.length, // Provide the number of items
+            itemBuilder: (context, index) {
+              var e = items[index]; // Get the item at the current index
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => ProductDescription(
+                        productname: e['productname'],
+                        productprice: e['price'],
+                        productimg: e['imagepath'],
+                      ),
+                    ));
+                  },
                   child: Container(
-                    decoration:
-                        BoxDecoration(borderRadius: BorderRadius.circular(10)),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Column(
                       children: [
                         Container(
                           height: 200.h,
                           decoration: BoxDecoration(
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                    e['imagepath'].toString(),
-                                  ),
-                                  fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(10)),
+                            image: DecorationImage(
+                              image: AssetImage(e['imagepath'].toString()),
+                              fit: BoxFit.cover,
+                            ),
+                            borderRadius: BorderRadius.circular(10),
+                          ),
                           child: Stack(
                             children: [
                               Align(
@@ -95,14 +109,14 @@ class _HomeScreenState extends State<HomeScreen> {
                           color: AppColor.blackcolor,
                           fontWeight: FontWeight.w600,
                           fontSize: 14.sp,
-                        )
+                        ),
                       ],
                     ),
                   ),
                 ),
-              ),
-            ],
-          ),
+              );
+            },
+          )
         ],
       ),
     );

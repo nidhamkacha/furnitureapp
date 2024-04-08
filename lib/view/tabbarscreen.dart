@@ -38,7 +38,7 @@ class _TabbarScreenState extends State<TabbarScreen>
               height: 52.h,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 28.0),
+              padding: const EdgeInsets.symmetric(horizontal: 5.0),
               child: Container(
                 height: 48.h,
                 width: 327.w,
@@ -49,7 +49,7 @@ class _TabbarScreenState extends State<TabbarScreen>
                         onPressed: () {},
                         icon: Icon(
                           Icons.search,
-                          size: 35,
+                          size: 30,
                           color: AppColor.lightblackcolor,
                         )),
                     Column(
@@ -72,7 +72,7 @@ class _TabbarScreenState extends State<TabbarScreen>
                       onPressed: () {},
                       icon: Icon(
                         Icons.shopping_cart_outlined,
-                        size: 35,
+                        size: 30,
                         color: AppColor.lightblackcolor,
                       ),
                     ),
@@ -89,7 +89,6 @@ class _TabbarScreenState extends State<TabbarScreen>
                 indicatorColor: Colors.transparent,
                 controller: _controller,
                 unselectedLabelColor: Colors.red,
-                
                 tabs: [
                   Container(
                     height: 69.h,
@@ -111,7 +110,7 @@ class _TabbarScreenState extends State<TabbarScreen>
                               borderRadius: BorderRadius.circular(15),
                               color: _controller.index == 0
                                   ? AppColor.blackcolor
-                                  : AppColor.lightblackcolor,
+                                  : AppColor.extralightblack,
                             ),
                           ),
                           SizedBox(
