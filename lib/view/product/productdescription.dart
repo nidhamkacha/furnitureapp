@@ -158,7 +158,7 @@ class _ProductDescriptionState extends State<ProductDescription> {
                         ),
                       ),
                       SizedBox(
-                        width: 20.w,
+                        width: 18.w,
                       ),
                       Container(
                         width: 250.w,
