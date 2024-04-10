@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:furnitureapp/res/bottom_navbar.dart';
+import 'package:furnitureapp/view/bottom_navbar.dart';
 import 'package:furnitureapp/res/common/Global_Textfield.dart';
 import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/common/global_text.dart';

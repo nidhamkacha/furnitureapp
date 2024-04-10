@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
+import 'package:furnitureapp/view/favoritescreen.dart';
 import 'package:furnitureapp/view/tabbarscreen.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -13,7 +14,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   int _selectedIndex = 0;
   static const List<Widget> _widgetOptions = <Widget>[
     TabbarScreen(),
-    TabbarScreen(),
+    FavoriteScreen(),
     TabbarScreen(),
     TabbarScreen()
   ];
@@ -57,10 +58,11 @@ class _BottomNavbarState extends State<BottomNavbar> {
               ),
               label: ''),
         ],
+        currentIndex: _selectedIndex,
         showSelectedLabels: false, // Disable selected item label
         showUnselectedLabels: false,
         selectedItemColor: AppColor.blackcolor,
-        selectedIconTheme: IconThemeData(color: Colors.black),
+        // selectedIconTheme: IconThemeData(color: Colors.black),
         onTap: _onItemTapped,
       ),
     );
