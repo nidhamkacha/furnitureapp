@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
+import 'package:furnitureapp/view/cart/mycart.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
@@ -79,7 +80,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                                 items[index]['productname']!,
                                 style: TextStyle(
                                     fontSize: 14.sp,
-                                    fontWeight: FontWeight.w600),
+                                    color: AppColor.lightblackcolor,
+                                    fontWeight: FontWeight.w400),
                               ),
                             ),
                             Container(
@@ -131,9 +133,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             height: 160.h,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: GlobalButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MycartScreen(),
+                    ));
+              },
               text: "Add all to my cart",
             ),
           )
