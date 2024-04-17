@@ -7,7 +7,6 @@ import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/auth/signup_screen.dart';
 
-
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -71,10 +70,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 40.h,
                         ),
-                        // GlobalTextField(
-                        //   text: "Email",
-                        //   icon: Icon(Icons.expand_more),
-                        // ),
                         GlobalTextfield(
                           text: "Email",
                           icon: Icon(Icons.expand_more),
@@ -82,10 +77,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(
                           height: 16.h,
                         ),
-                        // GlobalTextField(
-                        //   text: "Password",
-                        //   icon: Icon(Icons.remove_red_eye_outlined),
-                        // ),
                         GlobalTextfield(
                           text: "Password",
                           icon: Icon(Icons.remove_red_eye_outlined),
