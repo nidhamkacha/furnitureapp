@@ -65,14 +65,14 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         GlobalTextfield(
                           text: "Name",
-                          icon: Icon(Icons.expand_more),
+                          icon: Icon(Icons.person),
                         ),
                         SizedBox(
                           height: 16.h,
                         ),
                         GlobalTextfield(
                           text: "Email",
-                          icon: Icon(Icons.expand_more),
+                          icon: Icon(Icons.email),
                         ),
                         SizedBox(
                           height: 16.h,
@@ -101,15 +101,29 @@ class _SignupScreenState extends State<SignupScreen> {
                         SizedBox(
                           height: 16.h,
                         ),
-                        InkWell(
-                          onTap: () {
-                            Navigator.pop(context);
-                          },
-                          child: GlobalText(
-                            text: "Sign in",
-                            fontSize: 16.sp,
-                            fontWeight: FontWeight.w400,
-                          ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            GlobalText(
+                              text: "Already have account?",
+                              color: AppColor.lightblackcolor,
+                              fontSize: 16.sp,
+                              fontWeight: FontWeight.w400,
+                            ),
+                            SizedBox(
+                              width: 10.w,
+                            ),
+                            InkWell(
+                              onTap: () {
+                                Navigator.pop(context);
+                              },
+                              child: GlobalText(
+                                text: "Sign in",
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ],
                         )
                       ],
                     ),
