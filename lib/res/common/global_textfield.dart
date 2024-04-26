@@ -4,7 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 class GlobalTextfield extends StatefulWidget {
   final String? text;
   final Icon? icon;
-  const GlobalTextfield({super.key,this.text,this.icon});
+  final TextEditingController? Tcontroller;
+  const GlobalTextfield({super.key, this.text, this.icon, this.Tcontroller});
 
   @override
   State<GlobalTextfield> createState() => _GlobalTextfieldState();
@@ -17,6 +18,7 @@ class _GlobalTextfieldState extends State<GlobalTextfield> {
       height: 66.h,
       width: 287.w,
       child: TextField(
+        controller: widget.Tcontroller,
         decoration: InputDecoration(
           hintText: widget.text,
           suffixIcon: widget.icon,

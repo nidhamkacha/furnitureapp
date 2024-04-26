@@ -1,9 +1,14 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/common/global_textfield.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
+import 'package:furnitureapp/view/auth/login_screen.dart';
+import 'package:http/http.dart' as http;
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -12,7 +17,69 @@ class SignupScreen extends StatefulWidget {
   State<SignupScreen> createState() => _SignupScreenState();
 }
 
+TextEditingController namecontroller = new TextEditingController();
+TextEditingController emailcontroller = new TextEditingController();
+TextEditingController passwordcontroller = new TextEditingController();
+TextEditingController confirmpasswordcontroller = new TextEditingController();
+
 class _SignupScreenState extends State<SignupScreen> {
+  Future<void> signupScreen(String email, String password, String name) async {
+    try {
+      http.Response response = await http.post(
+          Uri.parse("https://typescript-al0m.onrender.com/api/user/signUp"),
+          headers: {'Content-Type': 'application/json; charset=UTF-8'},
+          body: jsonEncode({
+            'name': name,
+            'email': email,
+            'password': password,
+            'confirmPassword': password,
+          }));
+      log(response.statusCode.toString());
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        log("Sign Up!");
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (_) => const LoginScreen()),
+            (route) => false);
+      } else {
+        log('Failde to Signin');
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+  }
+  // Future<void> login(String email, String password, String name) async {
+  //   try {
+  //     http.Response response = await http.post(
+  //       Uri.parse('https://typescript-al0m.onrender.com/api/user/signUp'),
+  //       headers: {
+  //         'Content-Type': 'application/json; charset=UTF-8',
+  //       },
+  //       body: jsonEncode({
+  //         'name': name,
+  //         'email': email,
+  //         'password': password,
+  //         'confirmPassword': password,
+  //       }),
+  //     );
+
+  //     log(response.statusCode.toString());
+
+  //     if (response.statusCode == 200 || response.statusCode == 201) {
+  //       // var data = jsonDecode(response.body);
+  //       log('Sign up!');
+  //       Navigator.pushAndRemoveUntil(
+  //           context,
+  //           MaterialPageRoute(builder: (_) => const SignInScreen()),
+  //           (route) => false);
+  //     } else {
+  //       log('fail!');
+  //     }
+  //   } catch (e) {
+  //     log(e.toString());
+  //   }
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,6 +132,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         GlobalTextfield(
                           text: "Name",
+                          Tcontroller: namecontroller,
                           icon: Icon(Icons.person),
                         ),
                         SizedBox(
@@ -72,6 +140,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         GlobalTextfield(
                           text: "Email",
+                          Tcontroller: emailcontroller,
                           icon: Icon(Icons.email),
                         ),
                         SizedBox(
@@ -79,6 +148,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         GlobalTextfield(
                           text: "Password",
+                          Tcontroller: passwordcontroller,
                           icon: Icon(Icons.remove_red_eye_outlined),
                         ),
                         SizedBox(
@@ -86,6 +156,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         GlobalTextfield(
                           text: "Confirm Password",
+                          Tcontroller: confirmpasswordcontroller,
                           icon: Icon(Icons.remove_red_eye_outlined),
                         ),
                         SizedBox(
@@ -95,7 +166,15 @@ class _SignupScreenState extends State<SignupScreen> {
                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
                           child: GlobalButton(
                             text: "Sign Up",
-                            onPressed: () => Navigator.pop(context),
+                            onPressed: () {
+                              if (passwordcontroller.text ==
+                                  confirmpasswordcontroller.text) {
+                                signupScreen(
+                                    emailcontroller.text,
+                                    passwordcontroller.text,
+                                    namecontroller.text);
+                              }
+                            },
                           ),
                         ),
                         SizedBox(
