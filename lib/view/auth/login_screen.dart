@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
         if (Token != "") {
           Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(builder: (_) => const HomeScreen()),
+              MaterialPageRoute(builder: (_) => const BottomNavbar()),
               (route) => false);
         }
       } else {
@@ -58,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
       log("iji");
     }
   }
- 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/favoritescreen.dart';
+import 'package:furnitureapp/view/notificationscreen.dart';
 import 'package:furnitureapp/view/tabbarscreen.dart';
 
 class BottomNavbar extends StatefulWidget {
@@ -15,7 +16,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
   static const List<Widget> _widgetOptions = <Widget>[
     TabbarScreen(),
     FavoriteScreen(),
-    TabbarScreen(),
+    NotificationScreen(),
     TabbarScreen()
   ];
   void _onItemTapped(int index) {
