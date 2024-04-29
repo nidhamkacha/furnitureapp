@@ -140,8 +140,19 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: GlobalButton(
                             text: "Log in",
                             onPressed: () {
-                              login(emailcontroller.text,
-                                  passwordcontroller.text);
+                              if (emailcontroller.text != "" &&
+                                  passwordcontroller.text != "") {
+                                login(emailcontroller.text,
+                                    passwordcontroller.text);
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(
+                                      "Please fill all the fields",
+                                    ),
+                                  ),
+                                );
+                              }
                             },
                           ),
                         ),

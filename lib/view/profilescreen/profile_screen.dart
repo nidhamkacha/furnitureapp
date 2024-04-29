@@ -1,5 +1,3 @@
-// ignore_for_file: dead_code
-
 import 'dart:convert';
 import 'dart:developer';
 
@@ -14,32 +12,32 @@ class ProfileScreen extends StatefulWidget {
   State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
-class UserProfile {
-  final String id;
-  final String name;
-  final String email;
-  final String password;
-  final String confirmPassword;
-  final String profileImage;
-  final bool isAdmin;
-  final bool isDelete;
-  final int v;
+class GetProfile {
+  String? id;
+  String? name;
+  String? email;
+  String? password;
+  String? confirmPassword;
+  String? profileImage;
+  bool? isAdmin;
+  bool? isDelete;
+  int? v;
 
-  UserProfile({
-    required this.id,
-    required this.name,
-    required this.email,
-    required this.password,
-    required this.confirmPassword,
-    required this.profileImage,
-    required this.isAdmin,
-    required this.isDelete,
-    required this.v,
+  GetProfile({
+    this.id,
+    this.name,
+    this.email,
+    this.password,
+    this.confirmPassword,
+    this.profileImage,
+    this.isAdmin,
+    this.isDelete,
+    this.v,
   });
 
-  factory UserProfile.fromJson(Map<String, dynamic> json) {
-    return UserProfile(
-      id: json['_id'],
+  factory GetProfile.fromJson(Map<String, dynamic> json) {
+    return GetProfile(
+      id: json['id'],
       name: json['name'],
       email: json['email'],
       password: json['password'],
@@ -47,77 +45,58 @@ class UserProfile {
       profileImage: json['profileImage'],
       isAdmin: json['isAdmin'],
       isDelete: json['isDelete'],
-      v: json['__v'],
+      v: json['v'],
     );
   }
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  // Future<getprofile>? users;
-  // String? Token;
-  // String? name;
-  // @override
-  // void initState() {
-  //   users = fetchusers();
-  //   super.initState();
-  // }
-
-  // Future<getprofile> fetchusers() async {
-  //   final SharedPreferences prefs = await SharedPreferences.getInstance();
-  //   Token = prefs.getString('token');
-  //   log(Token.toString());
-  //   final response = await http.get(
-  //     Uri.parse('https://typescript-al0m.onrender.com/api/user/get-profile'),
-  //     headers: {'Authorization': 'Bearer $Token'},
-  //   );
-  //   if (response.statusCode == 200) {
-  //     List data = json.decode(response.body);
-  //     return data.map((json) => getprofile.fromJson(json));
-  //   } else {
-  //     throw Exception('Failed to load employees');
-  //   }
-  // }
-  // Future<getprofile>? futureProfile;
-  // String? Token;
-  // String? name;
-  // final box = getprofile();
-  // @override
-  // void initState() {
-  //   futureProfile = fetchProfile();
-  //   super.initState();
-  // }
-
-  // _getRequests() async {
-  //   setState(() {});
-  // }
-
-  Future<UserProfile> fetchUserProfile() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    String? token = prefs.getString('token');
-    final response = await http.get(
-      Uri.parse('https://typescript-al0m.onrender.com/api/user/get-profile'),
-      headers: {'Authorization': 'Bearer $token'},
-    );
-    if (token == null) {
-      throw Exception('Token is null');
-    }
-    if (response.statusCode == 200) {
-      final Map<String, dynamic> userData = json.decode(response.body);
-      return UserProfile.fromJson(userData);
-    } else {
-      throw Exception('Failed to load user profile');
-    }
+  Future<GetProfile>? futureProfile;
+  String? Token;
+  String? name;
+  String? email;
+  // String? pass;
+  // final box = GetStorage();
+  @override
+  void initState() {
+    futureProfile = fetchProfile();
+    super.initState();
   }
 
-  void getUserProfile() async {
-    try {
-      UserProfile userProfile = await fetchUserProfile();
-      print('User ID: ${userProfile.id}');
-      print('Name: ${userProfile.name}');
-      print('Email: ${userProfile.email}');
-      // Print other fields as needed
-    } catch (e) {
-      print('Error fetching user profile: $e');
+  _getRequests() async {
+    setState(() {});
+  }
+
+  Future<GetProfile> fetchProfile() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    Token = prefs.getString('token');
+
+    log(Token.toString());
+    final response = await http.get(
+      Uri.parse('https://typescript-al0m.onrender.com/api/user/get-profile'),
+      headers: {'Authorization': 'Bearer $Token'},
+    );
+    final data = jsonDecode(response.body);
+    setState(() {
+      name = data['name'];
+      email = data['email'];
+    });
+    // pass = data['confirmPassword'];
+    // box.write('name', data['name']);
+    log(name.toString());
+    if (response.statusCode == 200) {
+      log(response.body);
+      // Get.snackbar('Message', 'Load data.....!',
+      //     backgroundColor: Colors.yellow,
+      //     icon: Icon(Icons.abc),
+      //     snackPosition: SnackPosition.BOTTOM);
+      // Get.defaultDialog(
+      //   actions: [],
+      //   title: 'text',
+      // );
+      return GetProfile.fromJson(jsonDecode(response.body));
+    } else {
+      throw Exception('Failed to load profile');
     }
   }
 
@@ -125,8 +104,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-          child:
-              ElevatedButton(onPressed: getUserProfile, child: Text("data"))),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 200,
+            ),
+            name == null ? CircularProgressIndicator() : Text(name.toString()),
+            email == null
+                ? CircularProgressIndicator()
+                : Text(email.toString()),
+            // Text(pass.toString()),
+          ],
+        ),
+      ),
     );
   }
 }
