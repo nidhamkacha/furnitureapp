@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:furnitureapp/view/auth/login_screen.dart';
 import 'package:furnitureapp/view/bottom_navbar.dart';
 import 'package:furnitureapp/view/onbording/onbording_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';

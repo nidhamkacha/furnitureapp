@@ -2,6 +2,10 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:furnitureapp/model/profilemodel.dart';
+import 'package:furnitureapp/res/common/global_text.dart';
+import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -55,7 +59,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   String? Token;
   String? name;
   String? email;
-  // String? pass;
+
   // final box = GetStorage();
   @override
   void initState() {
@@ -103,17 +107,98 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent ,
+      appBar: AppBar(
+        title: Text(
+          'Profile',
+          style: TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        centerTitle: true,
+      ),
       body: Center(
         child: Column(
           children: [
             SizedBox(
-              height: 200,
+              height: 18.h,
             ),
-            name == null ? CircularProgressIndicator() : Text(name.toString()),
-            email == null
-                ? CircularProgressIndicator()
-                : Text(email.toString()),
-            // Text(pass.toString()),
+            Container(
+              height: 82.h,
+              child: Row(
+                children: [
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  CircleAvatar(
+                    radius: 50.w,
+                    backgroundImage: AssetImage('assets/images/avatar.png'),
+                  ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      name == null
+                          ? CircularProgressIndicator()
+                          : Text(
+                              name!,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                                fontSize: 20.sp,
+                              ),
+                            ),
+                      SizedBox(
+                        height: 10.h,
+                      ),
+                      name == null
+                          ? CircularProgressIndicator()
+                          : Text(
+                              email!,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontSize: 14.sp,
+                              ),
+                            ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 30.h,
+            ),
+            ListView.builder(
+              shrinkWrap: true,
+              itemCount: profiledata.length,
+              itemBuilder: (context, index) {
+                return GestureDetector(
+                  onTap: () {
+                    log("clicked");
+                  },
+                  child: Container(
+                    height: 80.h,
+                    width: double.infinity,
+                    child: ListTile(
+                      title: GlobalText(
+                        text: profiledata[index].title!,
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w600,
+                      ),
+                      subtitle: GlobalText(
+                        text: profiledata[index].subtitle!,
+                        fontSize: 12.sp,
+                        color: AppColor.lightblackcolor,
+                        fontWeight: FontWeight.w400,
+                      ),
+                      trailing: Icon(Icons.arrow_forward_ios_outlined),
+                    ),
+                  ),
+                );
+              },
+            )
           ],
         ),
       ),
