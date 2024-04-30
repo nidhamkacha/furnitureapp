@@ -6,6 +6,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furnitureapp/model/profilemodel.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
+import 'package:furnitureapp/view/auth/login_screen.dart';
+import 'package:furnitureapp/view/profilescreen/myorder.dart';
+import 'package:furnitureapp/view/profilescreen/update_profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -71,6 +74,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
     setState(() {});
   }
 
+  Future<void> delateProfile() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    Token = prefs.getString('token');
+
+    log(Token.toString());
+    final response = await http.delete(
+      Uri.parse('https://typescript-al0m.onrender.com/api/user/delete-profile'),
+      headers: {'Authorization': 'Bearer $Token'},
+    );
+
+    log(response.body);
+    if (response.statusCode == 200) {
+      log(response.body);
+
+      prefs.remove('token');
+      Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(builder: (_) => const LoginScreen()),
+          (route) => false);
+    } else {
+      throw Exception('Failed to load profile');
+    }
+  }
+
   Future<GetProfile> fetchProfile() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     Token = prefs.getString('token');
@@ -107,7 +134,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent ,
       appBar: AppBar(
         title: Text(
           'Profile',
@@ -121,7 +147,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: Column(
           children: [
             SizedBox(
-              height: 18.h,
+              height: 55.h,
             ),
             Container(
               height: 82.h,
@@ -164,11 +190,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                     ],
                   ),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => UpdateProfile(
+                                name: name,
+                              ),
+                            ));
+                      },
+                      icon: Icon(Icons.edit)),
+                  SizedBox(
+                    width: 10.w,
+                  ),
+                  IconButton(
+                      onPressed: () {
+                        delateProfile();
+                      },
+                      icon: Icon(Icons.delete))
                 ],
               ),
             ),
             SizedBox(
-              height: 30.h,
+              height: 50.h,
             ),
             ListView.builder(
               shrinkWrap: true,
@@ -176,7 +224,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    log("clicked");
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyorderScreen(),
+                        ));
                   },
                   child: Container(
                     height: 80.h,

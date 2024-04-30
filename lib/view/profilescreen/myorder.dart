@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:furnitureapp/res/static/app_color.dart';
 
 class MyorderScreen extends StatefulWidget {
   const MyorderScreen({super.key});
@@ -20,6 +21,19 @@ class _MyorderScreenState extends State<MyorderScreen> {
         ),
         centerTitle: true,
       ),
+      body: DefaultTabController(
+          length: 3,
+          child: TabBar(
+              dividerColor: AppColor.blackcolor,
+              indicatorColor: AppColor.blackcolor,
+              labelColor: AppColor.blackcolor,
+              unselectedLabelColor: AppColor.lightblackcolor,
+              indicatorSize: TabBarIndicatorSize.label,
+              tabs: [
+                Tab(text: 'Pending'),
+                Tab(text: 'Delivered'),
+                Tab(text: 'Canceled'),
+              ])),
     );
   }
 }

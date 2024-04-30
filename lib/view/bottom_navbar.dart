@@ -61,6 +61,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
               label: ''),
         ],
         currentIndex: _selectedIndex,
+
         showSelectedLabels: false, // Disable selected item label
         showUnselectedLabels: false,
         selectedItemColor: AppColor.blackcolor,
