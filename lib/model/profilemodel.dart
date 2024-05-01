@@ -1,6 +1,7 @@
 class Profile {
   String? title = '';
   String? subtitle = '';
+  
 
   Profile({this.title, this.subtitle});
 }

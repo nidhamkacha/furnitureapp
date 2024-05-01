@@ -8,6 +8,10 @@ import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/auth/login_screen.dart';
 import 'package:furnitureapp/view/profilescreen/myorder.dart';
+import 'package:furnitureapp/view/profilescreen/myreviewscreen.dart';
+import 'package:furnitureapp/view/profilescreen/paymentscreen.dart';
+import 'package:furnitureapp/view/profilescreen/settingscreen.dart';
+import 'package:furnitureapp/view/profilescreen/shippingscreen.dart';
 import 'package:furnitureapp/view/profilescreen/update_profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
@@ -224,11 +228,38 @@ class _ProfileScreenState extends State<ProfileScreen> {
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => MyorderScreen(),
-                        ));
+                    index == 0
+                        ? Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MyorderScreen(),
+                            ))
+                        : index == 1
+                            ? Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => ShippingScreen(),
+                                ))
+                            : index == 2
+                                ? Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => PaymentScreen(),
+                                    ))
+                                : index == 3
+                                    ? Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Myreview(),
+                                        ))
+                                    : index == 4
+                                        ? Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  Settingscreen(),
+                                            ))
+                                        : null;
                   },
                   child: Container(
                     height: 80.h,
