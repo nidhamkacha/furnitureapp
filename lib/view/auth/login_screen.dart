@@ -9,7 +9,7 @@ import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/auth/signup_screen.dart';
-import 'package:furnitureapp/view/home/home_screen.dart';
+
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 

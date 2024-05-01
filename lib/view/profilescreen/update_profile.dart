@@ -4,7 +4,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furnitureapp/res/common/global_button.dart';
-import 'package:furnitureapp/res/common/global_text.dart';
+
 import 'package:furnitureapp/res/common/global_textfield.dart';
 import 'package:furnitureapp/view/profilescreen/profile_screen.dart';
 import 'package:http/http.dart' as http;
