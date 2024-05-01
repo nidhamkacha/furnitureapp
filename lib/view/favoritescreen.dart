@@ -5,6 +5,7 @@ import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/cart/mycart.dart';
+import 'package:get/get.dart';
 
 class FavoriteScreen extends StatefulWidget {
   const FavoriteScreen({super.key});
@@ -136,11 +137,8 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             padding: const EdgeInsets.symmetric(horizontal: 10.0),
             child: GlobalButton(
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MycartScreen(),
-                    ));
+                
+                Get.to(MycartScreen());
               },
               text: "Add all to my cart",
             ),

@@ -4,6 +4,7 @@ import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/auth/login_screen.dart';
+import 'package:get/get.dart';
 
 class OnbordingScreen extends StatefulWidget {
   const OnbordingScreen({super.key});
@@ -53,11 +54,12 @@ class _OnbordingScreenState extends State<OnbordingScreen> {
               GlobalButton(
                 text: "Get Started",
                 onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => LoginScreen(),
-                      ));
+                  // Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => LoginScreen(),
+                  //     ));
+                  Get.to(LoginScreen());
                 },
               )
             ],

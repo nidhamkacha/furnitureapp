@@ -9,6 +9,7 @@ import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/auth/signup_screen.dart';
+import 'package:get/get.dart';
 
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -24,8 +25,6 @@ TextEditingController emailcontrolller = new TextEditingController();
 TextEditingController passwordcontrolller = new TextEditingController();
 
 class _LoginScreenState extends State<LoginScreen> {
-  
-
   Future<void> login(String email, String password) async {
     try {
       http.Response response = await http.post(
@@ -163,11 +162,12 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         InkWell(
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => SignupScreen(),
-                                ));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //       builder: (context) => SignupScreen(),
+                            //     ));
+                            Get.to(SignupScreen());
                           },
                           child: GlobalText(
                             text: "Sign up",

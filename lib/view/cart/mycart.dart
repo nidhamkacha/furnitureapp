@@ -6,6 +6,7 @@ import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/common/global_textfield.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/cart/checkoutscreen.dart';
+import 'package:get/get.dart';
 import 'package:input_quantity/input_quantity.dart';
 
 class MycartScreen extends StatefulWidget {
@@ -203,11 +204,12 @@ class _MycartScreenState extends State<MycartScreen> {
                 padding: const EdgeInsets.symmetric(horizontal: 10.0),
                 child: GlobalButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => CheckoutScren(),
-                        ));
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //       builder: (context) => CheckoutScren(),
+                    //     ));
+                    Get.to(CheckoutScren());
                   },
                   text: "Check Out",
                 ),

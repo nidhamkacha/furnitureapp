@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/cart/Congratesscreen.dart';
+import 'package:get/get.dart';
 
 class CheckoutScren extends StatefulWidget {
   const CheckoutScren({super.key});
@@ -334,12 +335,13 @@ class _CheckoutScrenState extends State<CheckoutScren> {
             ),
             GlobalButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => const Congratesscreen(),
-                  ),
-                );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (_) => const Congratesscreen(),
+                //   ),
+                // );
+                Get.to(Congratesscreen());
               },
               text: 'Submit order',
             ),

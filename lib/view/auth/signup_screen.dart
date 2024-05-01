@@ -8,6 +8,7 @@ import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/common/global_textfield.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/auth/login_screen.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 
 class SignupScreen extends StatefulWidget {
@@ -194,7 +195,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             ),
                             InkWell(
                               onTap: () {
-                                Navigator.pop(context);
+                                Get.back();
                               },
                               child: GlobalText(
                                 text: "Sign in",

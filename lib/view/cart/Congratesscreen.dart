@@ -4,6 +4,7 @@ import 'package:furnitureapp/res/common/global_button.dart';
 import 'package:furnitureapp/res/common/global_text.dart';
 import 'package:furnitureapp/res/static/app_color.dart';
 import 'package:furnitureapp/view/bottom_navbar.dart';
+import 'package:get/get.dart';
 
 class Congratesscreen extends StatefulWidget {
   const Congratesscreen({super.key});
@@ -59,11 +60,14 @@ class _CongratesscreenState extends State<Congratesscreen> {
             ),
             SizedBox(height: 20.h),
             GlobalButton(
-              onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => BottomNavbar(),
-                  )),
+              // onPressed: () => Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //       builder: (context) => BottomNavbar(),
+              //     )),
+              onPressed: () {
+                Get.to(BottomNavbar());
+              },
               text: 'Back to home',
             ),
           ],

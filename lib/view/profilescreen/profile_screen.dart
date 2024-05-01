@@ -13,6 +13,7 @@ import 'package:furnitureapp/view/profilescreen/paymentscreen.dart';
 import 'package:furnitureapp/view/profilescreen/settingscreen.dart';
 import 'package:furnitureapp/view/profilescreen/shippingscreen.dart';
 import 'package:furnitureapp/view/profilescreen/update_profile.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -121,14 +122,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     log(name.toString());
     if (response.statusCode == 200) {
       log(response.body);
-      // Get.snackbar('Message', 'Load data.....!',
-      //     backgroundColor: Colors.yellow,
-      //     icon: Icon(Icons.abc),
-      //     snackPosition: SnackPosition.BOTTOM);
-      // Get.defaultDialog(
-      //   actions: [],
-      //   title: 'text',
-      // );
+      Get.snackbar('Message', 'Load data.....!',
+          backgroundColor: Colors.yellow,
+          icon: Icon(Icons.abc),
+          snackPosition: SnackPosition.BOTTOM);
+      Get.defaultDialog(
+        actions: [],
+        title: 'text',
+      );
       return GetProfile.fromJson(jsonDecode(response.body));
     } else {
       throw Exception('Failed to load profile');
@@ -199,13 +200,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   IconButton(
                       onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => UpdateProfile(
-                                name: name,
-                              ),
-                            ));
+                        // Navigator.push(
+                        //     context,
+                        //     MaterialPageRoute(
+                        //       builder: (context) => UpdateProfile(
+                        //         name: name,
+                        //       ),
+                        //     ));
+                        Get.to(() => UpdateProfile(name: name));
                       },
                       icon: Icon(Icons.edit)),
                   SizedBox(
@@ -229,36 +231,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 return GestureDetector(
                   onTap: () {
                     index == 0
-                        ? Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => MyorderScreen(),
-                            ))
+                        ? Get.to(MyorderScreen())
                         : index == 1
-                            ? Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => ShippingScreen(),
-                                ))
+                            ? Get.to(ShippingScreen())
                             : index == 2
-                                ? Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => PaymentScreen(),
-                                    ))
+                                ? Get.to(PaymentScreen())
                                 : index == 3
-                                    ? Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => Myreview(),
-                                        ))
+                                    ? Get.to(Myreview())
                                     : index == 4
-                                        ? Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  Settingscreen(),
-                                            ))
+                                        ? Get.to((Settingscreen()))
                                         : null;
                   },
                   child: Container(
